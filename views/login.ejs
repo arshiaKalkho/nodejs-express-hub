@@ -20,7 +20,9 @@
 </head>
 <body>
     <form class ="input"action="/login" method="post">
-        
+        <% if (messages.error) { %>
+            <%= messages.error %>
+        <% } %>
         <div>
             <label for="email"> Email</label>
             <input type="text" id="email" name="email" required>

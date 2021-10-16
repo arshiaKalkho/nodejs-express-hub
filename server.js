@@ -56,7 +56,9 @@ app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true
-}))
+
+} 
+))
 
 app.get('/register', checkNotAuthenticated, (req, res) => {
     res.render('register.ejs')
@@ -64,7 +66,7 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 
 app.post('/register', checkNotAuthenticated, async (req, res) => {
     try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10)
+        const hashedPassword = await bcrypt.hash(req.body.password, 1)
         users.push({
         id: Date.now().toString(),
         name: req.body.name,
@@ -73,6 +75,7 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
 
 
     })
+        
         res.redirect('/login')
     } catch {
         res.redirect('/register')

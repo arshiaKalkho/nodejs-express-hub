@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./views/index.css">
+    <link rel="stylesheet" href="./views/login.css">
     <title>login</title>
 </head>
 <body>
@@ -12,7 +12,7 @@
 
 
         
-        <form class ="input"action="/login" method="post">
+        <form class ="input login-form"action="/login" method="post">
             <% if (messages.error) { %>
                 <%= messages.error %>
             <% } %>
@@ -26,6 +26,7 @@
             </div>
             <button type="submit">login</button>
             <a href="/register">Register</a>
+            
         </form>
     </div>
 </body>

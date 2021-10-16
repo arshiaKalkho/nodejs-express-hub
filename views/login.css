@@ -1,20 +1,25 @@
-html{
-    background-color: rgb(58, 58, 58);
+html {
+  background-image: url("./images/login-background.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    background-color: rgb(255, 115, 0);
-    border-radius: 10px;
-    
+
+.main-div {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.main-div{
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.login-form {
+  min-height: 25vh;
+  min-width: 40vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
 }

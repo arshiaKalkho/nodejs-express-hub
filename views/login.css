@@ -1,4 +1,6 @@
 html {
+  --color-primary: #161616;
+  --color-secondary: #9a7503;
   background-image: url("./images/login-background.svg");
   background-repeat: no-repeat;
   background-size: cover;

@@ -1,9 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
 html {
-  --color-primary: #161616;
+  --color-primary: #222222;
   --color-secondary: #9a7503;
   background-image: url("./images/login-background.svg");
   background-repeat: no-repeat;
   background-size: cover;
+}
+.heading {
+  font-family: "Anton", sans-serif;
+  color: var(--color-secondary);
+  text-align: center;
 }
 
 .main-div {
@@ -17,11 +29,67 @@ html {
 .login-form {
   min-height: 25vh;
   min-width: 40vw;
-
+  font-family: "Roboto", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  margin-bottom: 25vh;
   border-radius: 10px;
+}
+.error {
+  color: red;
+  font-size: 1.5rem;
+}
+
+.info {
+  width: 60vw;
+  font-family: "Roboto", sans-serif;
+}
+label {
+  cursor: pointer;
+  display: inline-block;
+
+  text-align: center;
+  width: 10vw;
+}
+h5 {
+  color: var(--color-primary);
+
+  text-align: center;
+  margin: 0.5vh;
+  border-radius: 10px;
+}
+button {
+  margin-top: 1vh;
+  height: 30px;
+  width: 150px;
+  color: var(--color-secondary);
+  background-color: var(--color-primary);
+  border-radius: 10px;
+  border: none;
+}
+button:hover {
+  color: white;
+  background-color: green;
+}
+input {
+  border-radius: 4px;
+  background-color: var(--color-secondary);
+  border: 2px solid var(--color-primary);
+}
+a {
+  margin-top: 1vh;
+  padding-top: 4px;
+  text-align: center;
+  height: 25px;
+  width: 100px;
+  background-color: var(--color-primary);
+  text-decoration: none;
+  color: var(--color-secondary);
+  border-radius: 4px;
+}
+a:hover {
+  background-color: red;
+  color: white;
 }

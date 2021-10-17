@@ -6,15 +6,16 @@ body {
   padding: 0px;
 }
 html {
-  --color-primary: #222222;
-  --color-secondary: #9a7503;
+  --color-primary: #c62368;
+  --color-secondary: #001220;
+  --color-tertioary: #fa7268;
   background-image: url("./images/login-background.svg");
   background-repeat: no-repeat;
   background-size: cover;
 }
 .heading {
   font-family: "Anton", sans-serif;
-  color: var(--color-secondary);
+  color: var(--color-primary);
   text-align: center;
 }
 
@@ -45,6 +46,7 @@ html {
 .info {
   width: 60vw;
   font-family: "Roboto", sans-serif;
+  color: var(--color-primary);
 }
 label {
   cursor: pointer;
@@ -77,6 +79,8 @@ input {
   border-radius: 4px;
   background-color: var(--color-secondary);
   border: 2px solid var(--color-primary);
+  font-family: "Roboto", sans-serif;
+  color: var(--color-tertioary);
 }
 a {
   margin-top: 1vh;

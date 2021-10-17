@@ -5,37 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        html{
-            background-color: darkturquoise;
-        }
-        body{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-evenly;
-        }
-
-    </style>
+    <link rel="stylesheet" href="./views/register.css">
     <title>Register</title>
 </head>
 <body>
-    <form action="/register" method="post">
-        
+    <div class="heading">
+            <h1>Register</h1>
+    </div>
+    <div class="main-div">
+    <form class="input login-form" action="/register" method="post">
+        <p>If you don't want to make an account, just use default to register and then login with default values provided.</p>
         <div>
-            <label for="name"> name</label>
+            <h5>Name</h5>
             <input type="text" value="root" id="name" name="name" required>
         </div>
+        
         <div>
-            <label for="email"> Email</label>
+            <h5>Email</h5>
             <input type="text" value="root@email.com"id="email" name="email" required>
         </div>
         <div>
-            <label for="password"> Password</label>
+            <h5>Password</h5>
             <input type="text" value="toor"id="password" name="password" required>
         </div>
         <button type="submit">Register</button>
+        
+    
+        <a href="/login">Login</a>
     </form>
-    <a href="/login">Login</a>
+</div>
 </body>
 </html>

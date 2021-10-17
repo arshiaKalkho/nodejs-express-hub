@@ -1,15 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+
 html {
-  --color-primary: #161616;
-  --color-secondary: #9a7503;
-  background-color: var(--color-primary);
+  --color-primary: #c62368;
+  --color-secondary: #001220;
+  --color-tertioary: #fa7268;
+  background-color: var(--color-secondary);
 }
-form {
+body {
+  padding: 0px;
+  margin: 0px;
+}
+.navbar {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
-  background-color: rgb(255, 115, 0);
-  border-radius: 10px;
+  justify-content: flex-end;
+  gap: 2vw;
+  position: sticky;
+  top: 0px;
+  height: 3vh;
+  font-family: "Roboto", sans-serif;
 }
 .main-div {
   height: 100vh;
@@ -18,4 +29,25 @@ form {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+a {
+  text-decoration: none;
+  color: var(--color-primary);
+}
+.navbar > h3 {
+  color: var(--color-tertioary);
+}
+.navbar > form > button {
+  color: var(--color-primary);
+  background-color: var(--color-tertioary);
+  border: none;
+  border-radius: 10px;
+}
+.nav-right {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: flex-end;
+  height: 3vh;
+  gap: 5vw;
 }

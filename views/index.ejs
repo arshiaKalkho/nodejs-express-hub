@@ -13,19 +13,23 @@
     
     <div class = "navbar">
     
-    
-    <a href="/nodejs-express-hub/views/index.ejs">Home</a>
-    <a href="/nodejs-express-hub/views/login.ejs">Login</a>
-    <a href="/nodejs-express-hub/views/register.ejs">Register</a>
-    <div class="nav-right">
-        <h3>Welcome <%= name %></h3>
-        <form action="/logout?_method=DELETE" method="POST">
-            <button type="submit">Log Out</button>
-        </form>
-    </div>
-    </div>
+        <div class="nav-left">
+            <a class="nav-links
+            " href="/nodejs-express-hub/views/index.ejs">Home</a>
+            <a class="nav-links
+            " href="/nodejs-express-hub/views/login.ejs">Login</a>
+            <a class="nav-links
+            " href="/nodejs-express-hub/views/register.ejs">Register</a>
+        </div>
 
-
+        <div class="nav-right">
+            <h5 class="welcome-user">Welcome <%= name %></h5>
+            <form action="/logout?_method=DELETE" method="POST">
+                <button class="logout-button"type="submit">Log Out</button>
+            </form>
+        </div>
+        
+    </div>
 
 
 

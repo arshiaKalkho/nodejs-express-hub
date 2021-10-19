@@ -67,5 +67,18 @@ body {
 
 .about {
   font-family: Roboto, sans-serif;
-  
+}
+.svg > g > g > g .tick {
+  fill: var(--color-primary);
+}
+
+#my_dataviz > svg > g > g:nth-child(3) > g > text,
+#my_dataviz > svg > g > g.xAxis > g > text {
+  fill: var(--color-primary);
+}
+#my_dataviz > svg > g > g.xAxis > g > line {
+  stroke: var(--color-tertioary);
+}
+#my_dataviz > svg > g > text {
+  fill: var(--color-primary);
 }

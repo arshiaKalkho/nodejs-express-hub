@@ -12,25 +12,27 @@
     
     
     <div class = "navbar">
-    
         <div class="nav-left">
-            <a class="nav-links
-            " href="/nodejs-express-hub/views/index.ejs">Home</a>
-            <a class="nav-links
-            " href="/nodejs-express-hub/views/login.ejs">Login</a>
-            <a class="nav-links
-            " href="/nodejs-express-hub/views/register.ejs">Register</a>
+            <a class="nav-links" href="/">Home</a>
+            <a class="nav-links" href="/login">back To</a>
+            <a class="nav-links" href="/register">Register</a>
         </div>
-
         <div class="nav-right">
             <h5 class="welcome-user">Welcome <%= name %></h5>
             <form action="/logout?_method=DELETE" method="POST">
                 <button class="logout-button"type="submit">Log Out</button>
             </form>
         </div>
-        
     </div>
 
+
+
+
+    <div class="body">
+        <div class="about">
+            <!-- <p>this website was build using Node.js, user authentication system is sessions based, no data is saved on drive or database. All user names will be <strong>Deleted</strong> after server shot down.</p> -->
+        </div>
+    </div>
 
 
 
@@ -51,3 +53,4 @@
 
     </body>
 </html>
+<script src="../index.js"></script>

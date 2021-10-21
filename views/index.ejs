@@ -61,22 +61,26 @@ var svg = d3.select("#my_dataviz")
     "translate(" + margin.left + "," + margin.top + ")");
 
 //read data
-d3.json("https://api.github.com/users/arshiaKalkho/events?per_page=10", function(data) {
+d3.json("https://api.github.com/users/arshiaKalkho/events?per_page=10", (data) => {
   // Get the different categories and count them
-
+  console.log(data)
 var categories = []
-for(i in data){
-    console.log(i)    
-    temp = i.repo;
-    if(categories.find(temp)){
 
+for(i = 0; i <data.length ; i++){  
+    if(categories.includes(data[i].repo.name)){
+        // do nothing
+    }else{
+        Data = data[i].repo.name.replace('arshiaKalkho/','')//removing my github account from the name
+        categories.push(Data)
     }
-    else{categories.push(temp)}
-
+    
     
 }
+  //console.log(categories)
 
-
+const ave = (pushes, repoName)=>{//counts all commit through mutiple pushes for a certain repositorie
+    
+};
 
 var n = categories.length
 
@@ -85,8 +89,10 @@ allMeans = []
 for (i in categories){
     currentGroup = categories[i]
     mean = d3.mean(data, function(d) { return +d[currentGroup] })
+    console.log(mean)
     allMeans.push(mean)
 }
+console.log(allMeans)
 
   // Create a color scale using these means.
 var myColor = d3.scaleSequential()

@@ -49,7 +49,7 @@
 // set the dimensions and margins of the graph
 var margin = {top: 100, right: 30, bottom: 50, left:150},
     width = 600 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    height = 400 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -61,7 +61,7 @@ var svg = d3.select("#my_dataviz")
     "translate(" + margin.left + "," + margin.top + ")");
 
 //read data
-d3.json("https://api.github.com/users/arshiaKalkho/events?per_page=40", (data) => {
+d3.json("https://api.github.com/users/arshiaKalkho/events?per_page=27", (data) => {
   // Get the different categories and count them
   console.log(data)
 
@@ -147,8 +147,8 @@ svg.append("g")
 svg.append("text")
     .attr("text-anchor", "end")
     .attr("x", width)
-    .attr("y", height + 50)
-    .text("Projects and commits");
+    .attr("y", height +30)
+    .text("Github Activity, Graph start Date:" +data[data.length - 1].created_at );
 
 
 
@@ -181,19 +181,23 @@ var y = d3.scaleLinear()
     
 
     for (i = 0; i < n; i++) {
-        var counter=-15;
+        var counter=-10;
         key = categories[i]
-        density =  data.map(function(d){  
-            counter+=5;
+        density =  data.slice(0).reverse().map(function(d){  
             
-            if(d.repo.name.replace('arshiaKalkho/','') === key && d.type === 'PushEvent'){
-                return [counter, d.payload.size/50]
-            }else{
+            if(counter === -10 || counter === 120){
+                counter+=5;
                 return [counter, 0]
+            }counter+=5;
+            if(d.repo.name.replace('arshiaKalkho/','') === key && d.type === 'PushEvent'){
+                return [counter, d.payload.size/30]
+            }else{
+                return [counter, 0.001]
             }
             
             ; }) 
             
+        
         allDensity.push({key: key, density: density})
     }
     
@@ -225,9 +229,9 @@ var y = d3.scaleLinear()
         return myColor( value  )
     })
     .datum(function(d){return(d.density)})
-    .attr("opacity", 0.7)
+    .attr("opacity", 0.9)
     .attr("stroke", "#000")
-    .attr("stroke-width", 0.1)
+    .attr("stroke-width", 3)
     .attr("d",  d3.line()
     .curve(d3.curveBasis)
     .x(function(d) { return x(d[0]); })

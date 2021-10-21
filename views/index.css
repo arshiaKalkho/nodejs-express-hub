@@ -81,4 +81,8 @@ body {
 }
 #my_dataviz > svg > g > text {
   fill: var(--color-primary);
+  font-family: "Roboto", sans-serif;
+}
+.commit-history {
+  margin-top: 20vh;
 }

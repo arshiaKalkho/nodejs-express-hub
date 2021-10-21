@@ -61,85 +61,158 @@ var svg = d3.select("#my_dataviz")
     "translate(" + margin.left + "," + margin.top + ")");
 
 //read data
-d3.json("https://api.github.com/users/arshiaKalkho/events?per_page=10", (data) => {
+d3.json("https://api.github.com/users/arshiaKalkho/events?per_page=40", (data) => {
   // Get the different categories and count them
   console.log(data)
-var categories = []
 
+
+
+
+  var categories = []
 for(i = 0; i <data.length ; i++){  
-    if(categories.includes(data[i].repo.name)){
+    if(categories.includes(data[i].repo.name.replace('arshiaKalkho/',''))){
         // do nothing
     }else{
         Data = data[i].repo.name.replace('arshiaKalkho/','')//removing my github account from the name
         categories.push(Data)
     }
     
-    
 }
   //console.log(categories)
 
+
+
+
 const ave = (pushes, repoName)=>{//counts all commit through mutiple pushes for a certain repositorie
+ 
+    var total=0;
+    var count=0;
+    for(i = 0; i <pushes.length ; i++){  
+        if(pushes[i].repo.name.indexOf(repoName) != -1 && pushes[i].payload.size!= null){//initial commits don't have a size so if size is null it won't count
+            //console.log(repoName,pushes[i].id ,": ","total", total, "+=", pushes[i].payload.size)
+            total+=pushes[i].payload.size;
+            count++;
+        }
+    }
+    if(count!=0){
+        
+        return total/count;
+
+    }
+    return 1;//for now
     
-};
+
+
+};  
+
 
 var n = categories.length
 
-  // Compute the mean of each group
+// Compute the mean of each group
 allMeans = []
 for (i in categories){
+    
     currentGroup = categories[i]
-    mean = d3.mean(data, function(d) { return +d[currentGroup] })
-    console.log(mean)
+    mean = ave(data,currentGroup)
     allMeans.push(mean)
-}
-console.log(allMeans)
+}   
+//console.log("all means",allMeans)
+
+
+
+
 
   // Create a color scale using these means.
 var myColor = d3.scaleSequential()
-    .domain([0,100])
+    .domain([0,10])                               //changed from 100 to 10
     .interpolator(d3.interpolateViridis);
 
-  // Add X axis
+
+
+
+
+
+
+    // Add X axis
 var x = d3.scaleLinear()
     .domain([-10, 120])
     .range([ 0, width ]);
 svg.append("g")
     .attr("class", "xAxis")
     .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x).tickValues([0,25, 50, 75, 100]).tickSize(-height) )
+    .call(d3.axisBottom(x).tickValues([0,25, 50, 75, 100,120]).tickSize(-height) )
     .select(".domain").remove()
 
   // Add X axis label:
 svg.append("text")
     .attr("text-anchor", "end")
     .attr("x", width)
-    .attr("y", height + 40)
+    .attr("y", height + 50)
     .text("Projects and commits");
+
+
+
+
 
   // Create a Y scale for densities
 var y = d3.scaleLinear()
     .domain([0, 0.25])
     .range([ height, 0]);
-
-  // Create the Y axis for names
-var yName = d3.scaleBand()
+    
+    // Create the Y axis for names 
+    var yName = d3.scaleBand()
     .domain(categories)
     .range([0, height])
     .paddingInner(1)
-svg.append("g")
+    svg.append("g")
     .call(d3.axisLeft(yName).tickSize(0))
     .select(".domain").remove()
+    
+    
+    
+    
 
-    // Compute kernel density estimation for each column:
-    var kde = kernelDensityEstimator(kernelEpanechnikov(7), x.ticks(40)) // increase this 40 for more accurate density.
+
+
+
+
     var allDensity = []
+
+    
+
     for (i = 0; i < n; i++) {
+        var counter=-15;
         key = categories[i]
-        density = kde( data.map(function(d){  return d[key]; }) )
+        density =  data.map(function(d){  
+            counter+=5;
+            
+            if(d.repo.name.replace('arshiaKalkho/','') === key && d.type === 'PushEvent'){
+                return [counter, d.payload.size/50]
+            }else{
+                return [counter, 0]
+            }
+            
+            ; }) 
+            
         allDensity.push({key: key, density: density})
     }
+    
 
-  // Add areas
+
+    console.log(allDensity)
+
+
+
+
+
+
+
+
+
+
+
+    
+    // Add areas
     svg.selectAll("areas")
     .data(allDensity)
     .enter()
@@ -156,26 +229,13 @@ svg.append("g")
     .attr("stroke", "#000")
     .attr("stroke-width", 0.1)
     .attr("d",  d3.line()
-        .curve(d3.curveBasis)
-        .x(function(d) { return x(d[0]); })
-        .y(function(d) { return y(d[1]); })
+    .curve(d3.curveBasis)
+    .x(function(d) { return x(d[0]); })
+    .y(function(d) { return y(d[1]); })
     )
-
+    
 })
 
-// This is what I need to compute kernel density estimation
-function kernelDensityEstimator(kernel, X) {
-return function(V) {
-    return X.map(function(x) {
-    return [x, d3.mean(V, function(v) { return kernel(x - v); })];
-    });
-};
-}
-function kernelEpanechnikov(k) {
-return function(v) {
-    return Math.abs(v /= k) <= 1 ? 0.75 * (1 - v * v) / k : 0;
-};
-}
 
 </script>
 

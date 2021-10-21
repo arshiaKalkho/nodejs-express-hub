@@ -39,17 +39,23 @@
     <div class="about">
         <!-- <p>this website was build using Node.js, user authentication system is sessions based, no data is saved on drive or database. All user names will be <strong>Deleted</strong> after server shot down.</p> -->
     </div>
-    <div class="commit-history" id="my_dataviz"></div>
-
+        <div class="commit-history-flex">
+            <div class="commit-history-info">
+                <H2>Live github event graph</H2>
+                <p> Using <strong>D3.js</strong> I created a graph to show all push and pull events to and from my github account. The graph is completely dynamic, The colum headings will change depending on how many different repositories are involved in the past 25 events that are acquired by accessing <strong>github api</strong>. Of course as everything in this website including the website itself that's made using <strong>Node.js and express</strong> are available on my <a href="https://github.com/arshiakalkho">github</a> </p>
+    
+            </div>
+        <div class="commit-history" id="my_dataviz"></div>
+    </div>
 </div>
 
 </body>
 <script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 100, right: 30, bottom: 50, left:150},
-    width = 600 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+var margin = {top: 150, right: 30, bottom: 30, left:150},
+    width = 700 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -63,10 +69,7 @@ var svg = d3.select("#my_dataviz")
 //read data
 d3.json("https://api.github.com/users/arshiaKalkho/events?per_page=27", (data) => {
   // Get the different categories and count them
-  console.log(data)
-
-
-
+//   console.log(data)
 
   var categories = []
 for(i = 0; i <data.length ; i++){  
@@ -80,9 +83,6 @@ for(i = 0; i <data.length ; i++){
 }
   //console.log(categories)
 
-
-
-
 const ave = (pushes, repoName)=>{//counts all commit through mutiple pushes for a certain repositorie
  
     var total=0;
@@ -94,18 +94,13 @@ const ave = (pushes, repoName)=>{//counts all commit through mutiple pushes for 
             count++;
         }
     }
-    if(count!=0){
-        
+    if(count!=0){    
         return total/count;
 
     }
     return 1;//for now
     
-
-
 };  
-
-
 var n = categories.length
 
 // Compute the mean of each group
@@ -117,21 +112,10 @@ for (i in categories){
     allMeans.push(mean)
 }   
 //console.log("all means",allMeans)
-
-
-
-
-
   // Create a color scale using these means.
 var myColor = d3.scaleSequential()
     .domain([0,10])                               //changed from 100 to 10
     .interpolator(d3.interpolateViridis);
-
-
-
-
-
-
 
     // Add X axis
 var x = d3.scaleLinear()
@@ -148,11 +132,7 @@ svg.append("text")
     .attr("text-anchor", "end")
     .attr("x", width)
     .attr("y", height +30)
-    .text("Github Activity, Graph start Date:" +data[data.length - 1].created_at );
-
-
-
-
+    .text("Github Activity Graph start Date: " +data[data.length - 1].created_at.substring(0,10) +" up untill now");
 
   // Create a Y scale for densities
 var y = d3.scaleLinear()
@@ -168,18 +148,7 @@ var y = d3.scaleLinear()
     .call(d3.axisLeft(yName).tickSize(0))
     .select(".domain").remove()
     
-    
-    
-    
-
-
-
-
-
     var allDensity = []
-
-    
-
     for (i = 0; i < n; i++) {
         var counter=-10;
         key = categories[i]
@@ -200,22 +169,7 @@ var y = d3.scaleLinear()
         
         allDensity.push({key: key, density: density})
     }
-    
 
-
-    console.log(allDensity)
-
-
-
-
-
-
-
-
-
-
-
-    
     // Add areas
     svg.selectAll("areas")
     .data(allDensity)

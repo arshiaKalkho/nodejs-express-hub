@@ -1,11 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
 html {
   --color-primary: #c62368;
   --color-secondary: #001220;
   --color-tertioary: #fa7268;
+  --color-grey: #302f2f;
   background-color: var(--color-secondary);
+  font-family: "Roboto", sans-serif;
 }
 body {
   padding: 0px;
@@ -21,6 +23,7 @@ body {
   top: 0;
   height: 5vh;
   font-family: "Roboto", sans-serif;
+  background-color: var(--color-grey);
 }
 .nav-links {
   text-decoration: none;
@@ -83,6 +86,47 @@ body {
   fill: var(--color-primary);
   font-family: "Roboto", sans-serif;
 }
+
+
+.commit-history-flex {
+    flex-direction:column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .commit-history{
+    margin:2vh;
+  }
+  .commit-history-info{
+    margin: 2vh;
+  }
+@media only screen and (max-width:700px) {
+  
+  .commit-history-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+}
+
 .commit-history {
   margin-top: 20vh;
 }
+.commit-history-info {
+  margin-top: 20vh;
+  
+  text-align: center;
+  padding: 3rem;
+  color: var(--color-primary);
+}
+.commit-history-info > h2 {
+  font-family: "Anton", serif;
+  color: var(--color-tertioary);
+}
+.commit-history-info > p > strong {
+  color: var(--color-tertioary);
+}
+.commit-history-info > p > a {
+  font-family: "Anton", serif;
+  color: var(--color-tertioary);
+  

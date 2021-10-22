@@ -88,35 +88,39 @@ body {
 }
 
 
-.commit-history-flex {
-    flex-direction:column;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-  .commit-history{
-    margin:2vh;
-  }
-  .commit-history-info{
-    margin: 2vh;
-  }
-@media only screen and (max-width:700px) {
-  
   .commit-history-flex {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
 }
+
+@media only screen and (max-width:1000px) {
+  
+.commit-history-flex {
+  flex-direction:column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.commit-history{
+  margin:2vh;
+  margin-right: 4vh;
+}
+.commit-history-info{
+  margin: 2vh;
+}
+  
 }
 
+
 .commit-history {
-  margin-top: 20vh;
+  margin-top: 5vh;
 }
 .commit-history-info {
-  margin-top: 20vh;
+  margin-top: 5vh;
   
   text-align: center;
-  padding: 3rem;
+  padding: 1.5rem;
   color: var(--color-primary);
 }
 .commit-history-info > h2 {

@@ -19,18 +19,21 @@ body {
   flex-direction: row;
   align-items: center;
   gap: 2vw;
-  position: sticky;
+  position: absolute;
   top: 0;
   height: 5vh;
+  width: 100vw;
   font-family: "Roboto", sans-serif;
-  background-color: var(--color-grey);
 }
 .nav-links {
   text-decoration: none;
   color: var(--color-primary);
+  padding: 5px;
+  border-radius: 10px;
 }
 .nav-links:hover {
   color: var(--color-tertioary);
+  border: 2px solid var(--color-tertioary);
 }
 .welcome-user {
   color: var(--color-tertioary);
@@ -66,10 +69,24 @@ body {
   height: 3vh;
   gap: 5vw;
 }
-/* navbar completed */
 
+/* navbar completed */
+/* body started */
 .about {
+  color: var(--color-primary);
+  text-align: center;
+  margin: 10vh 0;
+
+  padding: 2vw;
   font-family: Roboto, sans-serif;
+}
+.separator {
+  width: 100vw;
+  height: 20vh;
+  background-image: url("./images/separator.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 .svg > g > g > g .tick {
   fill: var(--color-primary);
@@ -78,6 +95,7 @@ body {
 #my_dataviz > svg > g > g:nth-child(3) > g > text,
 #my_dataviz > svg > g > g.xAxis > g > text {
   fill: var(--color-primary);
+  font-size: 1rem;
 }
 #my_dataviz > svg > g > g.xAxis > g > line {
   stroke: var(--color-tertioary);
@@ -87,50 +105,93 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-
-  .commit-history-flex {
+.commit-history-flex {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  gap: 0;
   align-items: center;
+  margin: 5vh 0;
 }
-
-@media only screen and (max-width:1000px) {
-  
-.commit-history-flex {
-  flex-direction:column;
-  justify-content: space-evenly;
-  align-items: center;
-}
-.commit-history{
-  margin:2vh;
-  margin-right: 4vh;
-}
-.commit-history-info{
-  margin: 2vh;
-}
-  
-}
-
 
 .commit-history {
   margin-top: 5vh;
 }
 .commit-history-info {
   margin-top: 5vh;
-  
+
   text-align: center;
-  padding: 1.5rem;
+  padding: 1rem;
   color: var(--color-primary);
 }
-.commit-history-info > h2 {
+.commit-history-info > h2,
+.about-header {
   font-family: "Anton", serif;
   color: var(--color-tertioary);
 }
-.commit-history-info > p > strong {
+.commit-history-info > p > strong,
+.about > p > strong {
   color: var(--color-tertioary);
 }
-.commit-history-info > p > a {
+.commit-history-info > p > a,
+.about > p > a {
   font-family: "Anton", serif;
   color: var(--color-tertioary);
-  
+}
+.footer {
+  width: 100vw;
+  height: 20vh;
+  background-image: url("./images/footer-background.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin: 10vh 0px 0px 0px;
+
+  overflow-x: hidden;
+  font-family: "Roboto", sans-serif;
+  color: var(--color-primary);
+  bottom: 0;
+
+  text-align: center;
+}
+.footer > a {
+  color: var(--color-tertioary);
+  font-family: "Anton", sans-serif;
+}
+
+/* small displays */
+@media only screen and (max-width: 500px) {
+  body > div.navbar > div.nav-left > a {
+    font-size: 1.2rem;
+  }
+  .navbar > div {
+    margin: 0;
+  }
+  .commit-history-info {
+    margin-top: 5vh;
+  }
+  .separator {
+    height: 10vh;
+  }
+}
+/* large screens */
+@media only screen and (max-width: 1000px) {
+  .commit-history-flex {
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .commit-history {
+    margin: 2vh;
+    margin-right: 4vh;
+  }
+  .commit-history-info {
+    margin: 2vh;
+  }
+  .separator {
+    height: 25vh;
+  }
+}
+/* xl screens */
+@media only screen and (max-width: 1600px) {
+}

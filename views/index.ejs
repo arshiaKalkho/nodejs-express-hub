@@ -13,6 +13,7 @@
 
 
 <link rel="stylesheet" href="./views/index.css">
+<meta content="width=device-width, initial-scale=1" name="viewport" />
 <title>project hub</title>
 </head>
 <body>
@@ -21,7 +22,7 @@
 <div class = "navbar">
     <div class="nav-left">
         <a class="nav-links" href="/">Home</a>
-        <a class="nav-links" href="/login">back To</a>
+        <a class="nav-links" href="/login">back</a>
         <a class="nav-links" href="/register">Register</a>
     </div>
     <div class="nav-right">
@@ -37,31 +38,52 @@
 
 <div class="body">
     <div class="about">
-        <!-- <p>this website was build using Node.js, user authentication system is sessions based, no data is saved on drive or database. All user names will be <strong>Deleted</strong> after server shot down.</p> -->
+        <h2 class="about-header">About This Website</h2>
+        <p>This website was build using <strong>Node.js</strong> and <strong>express.js</strong>, Other tools include <strong>passport</strong> for session managment and <strong>bcrypt</strong> for encryption. User authentication system is sessions based, no data is saved on-drive or database. All user names and passwords will be Deleted after server shotdown or restart.
+        Nevertheless if you used real passwords don't worry they are hashed multiple times and "salted" which means identical passwords will look different in storage so your safe here, until the next restart of course, Their all deleted then.</p>
+        <p>To see what I'm on currently take a look at the graph below, It's updated live and shows all projects and how much they are worked on. You can find all my projects in my repo<a href="https://github.com/arshiakalkho"> github repo</a> </p>
     </div>
-        <div class="commit-history-flex">
-            <div class="commit-history-info">
-                <H2>Live github event graph</H2>
-                <p> Using <strong>D3.js</strong> I created a graph to show all push and pull events to and from my github account. The graph is completely dynamic, The colum headings will change depending on how many different repositories are involved in the past 25 events that are acquired by accessing <strong>github api</strong>. Of course as everything in this website including the website itself that's made using <strong>Node.js and express</strong> are available on my <a href="https://github.com/arshiakalkho">github</a> </p>
-    
-            </div>
+    <div class="separator"></div>
+
+    <div class="commit-history-flex">
+        <div class="commit-history-info">
+            <H2>Live github event graph</H2>
+            <p> Using <strong>D3.js</strong> I created a graph to show all push and pull events to and from my github account. The graph is completely dynamic, The column headings will change depending on how many different repositories are involved in the past 25 events that are acquired by accessing <strong>github api</strong>. Of course as everything in this website including the website itself  source codes are available on my <a href="https://github.com/arshiakalkho">github</a> </p>
+
+        </div>
         <div class="commit-history" id="my_dataviz"></div>
     </div>
 </div>
-
+<div class="footer">
+    To contact me, Please visit <a href="https://arshiakalkhorani.com"> My Website</a>
+</div>
 </body>
 <script>
+    //alignement for bigger and smaller screens adjust to taste
+var hsizeMultiplier=1.5;
+var vsizeMultiplier=1.8;
+var marginRight=30;
+var marginTop=130;
+if(screen.width < 550){//small devices
+    hsizeMultiplier = 1.2;
+    vsizeMultiplier = 2; 
+}
+
+if(screen.width > 1400){//large devices
+    marginRight=80;
+    marginTop=200;
+}
 
 // set the dimensions and margins of the graph
-var margin = {top: 150, right: 30, bottom: 30, left:150},
-    width = 700 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin = {top:marginTop, right: marginRight, bottom: 30, left:150},
+    width = screen.width/hsizeMultiplier - margin.left - margin.right,
+    height = screen.height/vsizeMultiplier - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
 .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", width+ margin.left + margin.right)
+    .attr("height",height + margin.top + margin.bottom)
 .append("g")
     .attr("transform",
     "translate(" + margin.left + "," + margin.top + ")");
@@ -114,7 +136,7 @@ for (i in categories){
 //console.log("all means",allMeans)
   // Create a color scale using these means.
 var myColor = d3.scaleSequential()
-    .domain([0,10])                               //changed from 100 to 10
+    .domain([0,3])
     .interpolator(d3.interpolateViridis);
 
     // Add X axis
@@ -132,7 +154,7 @@ svg.append("text")
     .attr("text-anchor", "end")
     .attr("x", width)
     .attr("y", height +30)
-    .text("Github Activity Graph start Date: " +data[data.length - 1].created_at.substring(0,10) +" up untill now");
+    .text("Github Activity Graph start Date: " +data[data.length - 1].created_at.substring(0,10) +" to Now");
 
   // Create a Y scale for densities
 var y = d3.scaleLinear()

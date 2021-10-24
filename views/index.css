@@ -8,6 +8,7 @@ html {
   --color-grey: #302f2f;
   background-color: var(--color-secondary);
   font-family: "Roboto", sans-serif;
+  overflow-x: hidden;
 }
 body {
   padding: 0px;
@@ -118,7 +119,7 @@ body {
   margin-top: 5vh;
 }
 .commit-history-info {
-  margin-top: 4vh;
+  margin-top: 5vh 5vw;
 
   text-align: center;
   padding: 1rem;

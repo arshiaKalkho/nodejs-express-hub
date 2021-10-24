@@ -48,7 +48,8 @@
     <div class="commit-history-flex">
         <div class="commit-history-info">
             <H2>Live github event graph</H2>
-            <p> Using <strong>D3.js</strong> I created a graph to show all push and pull events to and from my github account. The graph is completely dynamic, The column headings will change depending on how many different repositories are involved in the past 25 events that are acquired by accessing <strong>github api</strong>. Of course as everything in this website including the website itself  source codes are available on my <a href="https://github.com/arshiakalkho">github</a> </p>
+            <p> Using <strong>D3.js</strong> I created a graph to show all push and pull events to and from my github account. The graph is completely dynamic, The column headings will change depending on how many different repositories are involved in the past 25 events that are acquired by accessing <strong>github api</strong>.
+                The graph will also resize itself to fit the screen so if it doesn't look right just refresh and it will reset. Of course as everything in this website including the website itself  source codes are available on my <a href="https://github.com/arshiakalkho">github</a> </p>
 
         </div>
         <div class="commit-history" id="my_dataviz"></div>
@@ -88,16 +89,18 @@ if (typeof window.innerWidth != 'undefined') {
 //alignement for bigger and smaller screens adjust to taste
 var hsizeMultiplier=1.5;
 var vsizeMultiplier=1.8;
-var marginRight=25;
+var marginRight=35;
 var marginTop=130;
-if(viewPortWidth < 550){//small devices
+if( viewPortWidth< 550){//small devices
     hsizeMultiplier = 1.2;
     vsizeMultiplier = 2; 
 }
 
-if(viewPortHeight > 1400){//large devices
+if(viewPortWidth > 1400){//large devices
     marginRight=80;
     marginTop=200;
+    hsizeMultiplier = 1.4;
+    vsizeMultiplier = 2; 
 }
 
 // set the dimensions and margins of the graph

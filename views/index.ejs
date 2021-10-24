@@ -59,25 +59,51 @@
 </div>
 </body>
 <script>
-    //alignement for bigger and smaller screens adjust to taste
+
+
+var viewPortWidth, viewPortHeight =0;
+
+if (typeof window.innerWidth != 'undefined') {
+   viewPortWidth = window.innerWidth,
+   viewPortHeight = window.innerHeight
+ }
+
+// IE6 in standards compliant mode (i.e. with a valid doctype as the first line in the document)
+ else if (typeof document.documentElement != 'undefined'
+ && typeof document.documentElement.clientWidth !=
+ 'undefined' && document.documentElement.clientWidth != 0) {
+    viewPortWidth = document.documentElement.clientWidth,
+    viewPortHeight = document.documentElement.clientHeight
+ }
+
+ // older versions of IE
+ else {
+   viewPortWidth = document.getElementsByTagName('body')[0].clientWidth,
+   viewPortHeight = document.getElementsByTagName('body')[0].clientHeight
+ }
+
+
+
+
+//alignement for bigger and smaller screens adjust to taste
 var hsizeMultiplier=1.5;
 var vsizeMultiplier=1.8;
-var marginRight=30;
+var marginRight=25;
 var marginTop=130;
-if(screen.width < 550){//small devices
+if(viewPortWidth < 550){//small devices
     hsizeMultiplier = 1.2;
     vsizeMultiplier = 2; 
 }
 
-if(screen.width > 1400){//large devices
+if(viewPortHeight > 1400){//large devices
     marginRight=80;
     marginTop=200;
 }
 
 // set the dimensions and margins of the graph
 var margin = {top:marginTop, right: marginRight, bottom: 30, left:150},
-    width = screen.width/hsizeMultiplier - margin.left - margin.right,
-    height = screen.height/vsizeMultiplier - margin.top - margin.bottom;
+    width = viewPortWidth/hsizeMultiplier - margin.left - margin.right,
+    height = viewPortHeight/vsizeMultiplier - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")

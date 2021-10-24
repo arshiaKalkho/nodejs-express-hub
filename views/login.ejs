@@ -4,35 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        html{
-            background-color: darkturquoise;
-        }
-        body{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-evenly;
-        }
-
-    </style>
+    <link rel="stylesheet" href="./views/login.css">
     <title>login</title>
 </head>
 <body>
-    <form class ="input"action="/login" method="post">
-        <% if (messages.error) { %>
-            <%= messages.error %>
-        <% } %>
-        <div>
-            <label for="email"> Email</label>
-            <input type="text" id="email" name="email" required>
+    <div class="heading">
+        <h1>Login</h1>
+    </div>
+    <div class="main-div">
+        
+
+        <div class="info">
+            <p>Please just press the login button. If the 'root' account doesn't exist just press register, And then use<strong> all default values.</strong> Feel free to create your own account <strong> Don't use real passwords</strong>, they are multi hashed with 'salt' but still, Don't risk it  .</p>
         </div>
-        <div>
-            <label for="password"> Password</label>
-            <input type="text" id="password" name="password" required>
+        <form class ="input login-form"action="/login" method="post">
+            <div class="error">
+            <% if (messages.error) { %>
+                <%= messages.error %>
+            <% } %>
         </div>
-        <button type="submit">login</button>
-    </form>
-    <a href="/register">Register</a>
+            <div>
+                <h5>Email</h5>
+                <input  type="text" value="root@email.com" id="email" name="email" required>
+            </div>
+            <div>
+                <h5>Password</h5>
+                <input  type="text" value="toor" id="password" name="password" required>
+            </div>
+            <button type="submit">login</button>
+            <a href="/register">Register</a>
+            
+        </form>
+    </div>
 </body>
 </html>

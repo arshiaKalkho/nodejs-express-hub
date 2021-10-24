@@ -1,24 +1,222 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        html{
-            background-color: rgb(14, 247, 6);
-        }
-        body{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-evenly;
-        }
 
-    </style>
-    <title>project hub</title>
+<!-- Code from d3-graph-gallery.com -->
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+
+
+
+
+
+<link rel="stylesheet" href="./views/index.css">
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<title>project hub</title>
 </head>
 <body>
-    <h1>Welcome logged  <%= name %></h1>
+
+
+<div class = "navbar">
+    <div class="nav-left">
+        <a class="nav-links" href="/">Main</a>
+        <a class="nav-links" href="/login">login</a>
+        <a class="nav-links" href="/register">Register</a>
+    </div>
+    <div class="nav-right">
+        <h5 class="welcome-user">Welcome <%= name %></h5>
+        <form action="/logout?_method=DELETE" method="POST">
+            <button class="logout-button"type="submit">Log Out</button>
+        </form>
+    </div>
+</div>
+
+
+
+
+<div class="body">
+    <div class="about">
+        <h2 class="about-header">About This Website</h2>
+        <p>This website was build using <strong>Node.js</strong> and <strong>express.js</strong>, Other tools include <strong>passport</strong> for session managment and <strong>bcrypt</strong> for encryption. User authentication system is sessions based, no data is saved on-drive or database. All user names and passwords will be Deleted after server shotdown or restart.
+        Nevertheless if you used real passwords don't worry they are hashed multiple times and "salted" which means identical passwords will look different in storage so your safe here, until the next restart of course, Their all deleted then.</p>
+        <p>To see what I'm on currently take a look at the graph below, It's updated live and shows all projects and how much they are worked on. You can find all my projects in my repo<a href="https://github.com/arshiakalkho"> github repo</a> </p>
+    </div>
+    <div class="separator"></div>
+
+    <div class="commit-history-flex">
+        <div class="commit-history-info">
+            <H2>Live github event graph</H2>
+            <p> Using <strong>D3.js</strong> I created a graph to show all push and pull events to and from my github account. The graph is completely dynamic, The column headings will change depending on how many different repositories are involved in the past 25 events that are acquired by accessing <strong>github api</strong>. Of course as everything in this website including the website itself  source codes are available on my <a href="https://github.com/arshiakalkho">github</a> </p>
+
+        </div>
+        <div class="commit-history" id="my_dataviz"></div>
+    </div>
+</div>
+<div class="footer">
+    To contact me, Please visit <a href="https://arshiakalkhorani.com"> My Website</a>
+</div>
 </body>
+<script>
+    //alignement for bigger and smaller screens adjust to taste
+var hsizeMultiplier=1.5;
+var vsizeMultiplier=1.8;
+var marginRight=30;
+var marginTop=130;
+if(screen.width < 550){//small devices
+    hsizeMultiplier = 1.2;
+    vsizeMultiplier = 2; 
+}
+
+if(screen.width > 1400){//large devices
+    marginRight=80;
+    marginTop=200;
+}
+
+// set the dimensions and margins of the graph
+var margin = {top:marginTop, right: marginRight, bottom: 30, left:150},
+    width = screen.width/hsizeMultiplier - margin.left - margin.right,
+    height = screen.height/vsizeMultiplier - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz")
+.append("svg")
+    .attr("width", width+ margin.left + margin.right)
+    .attr("height",height + margin.top + margin.bottom)
+.append("g")
+    .attr("transform",
+    "translate(" + margin.left + "," + margin.top + ")");
+
+//read data
+d3.json("https://api.github.com/users/arshiaKalkho/events?per_page=27", (data) => {
+  // Get the different categories and count them
+//   console.log(data)
+
+  var categories = []
+for(i = 0; i <data.length ; i++){  
+    if(categories.includes(data[i].repo.name.replace('arshiaKalkho/',''))){
+        // do nothing
+    }else{
+        Data = data[i].repo.name.replace('arshiaKalkho/','')//removing my github account from the name
+        categories.push(Data)
+    }
+    
+}
+  //console.log(categories)
+
+const ave = (pushes, repoName)=>{//counts all commit through mutiple pushes for a certain repositorie
+ 
+    var total=0;
+    var count=0;
+    for(i = 0; i <pushes.length ; i++){  
+        if(pushes[i].repo.name.indexOf(repoName) != -1 && pushes[i].payload.size!= null){//initial commits don't have a size so if size is null it won't count
+            //console.log(repoName,pushes[i].id ,": ","total", total, "+=", pushes[i].payload.size)
+            total+=pushes[i].payload.size;
+            count++;
+        }
+    }
+    if(count!=0){    
+        return total/count;
+
+    }
+    return 1;//for now
+    
+};  
+var n = categories.length
+
+// Compute the mean of each group
+allMeans = []
+for (i in categories){
+    
+    currentGroup = categories[i]
+    mean = ave(data,currentGroup)
+    allMeans.push(mean)
+}   
+//console.log("all means",allMeans)
+  // Create a color scale using these means.
+var myColor = d3.scaleSequential()
+    .domain([0,3])
+    .interpolator(d3.interpolateViridis);
+
+    // Add X axis
+var x = d3.scaleLinear()
+    .domain([-10, 120])
+    .range([ 0, width ]);
+svg.append("g")
+    .attr("class", "xAxis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x).tickValues([0,25, 50, 75, 100,120]).tickSize(-height) )
+    .select(".domain").remove()
+
+  // Add X axis label:
+svg.append("text")
+    .attr("text-anchor", "end")
+    .attr("x", width)
+    .attr("y", height +30)
+    .text("Github Activity Graph start Date: " +data[data.length - 1].created_at.substring(0,10) +" to Now");
+
+  // Create a Y scale for densities
+var y = d3.scaleLinear()
+    .domain([0, 0.25])
+    .range([ height, 0]);
+    
+    // Create the Y axis for names 
+    var yName = d3.scaleBand()
+    .domain(categories)
+    .range([0, height])
+    .paddingInner(1)
+    svg.append("g")
+    .call(d3.axisLeft(yName).tickSize(0))
+    .select(".domain").remove()
+    
+    var allDensity = []
+    for (i = 0; i < n; i++) {
+        var counter=-10;
+        key = categories[i]
+        density =  data.slice(0).reverse().map(function(d){  
+            
+            if(counter === -10 || counter === 120){
+                counter+=5;
+                return [counter, 0]
+            }counter+=5;
+            if(d.repo.name.replace('arshiaKalkho/','') === key && d.type === 'PushEvent'){
+                return [counter, d.payload.size/30]
+            }else{
+                return [counter, 0.001]
+            }
+            
+            ; }) 
+            
+        
+        allDensity.push({key: key, density: density})
+    }
+
+    // Add areas
+    svg.selectAll("areas")
+    .data(allDensity)
+    .enter()
+    .append("path")
+    .attr("transform", function(d){return("translate(0," + (yName(d.key)-height) +")" )})
+    .attr("fill", function(d){
+        grp = d.key ;
+        index = categories.indexOf(grp)
+        value = allMeans[index]
+        return myColor( value  )
+    })
+    .datum(function(d){return(d.density)})
+    .attr("opacity", 0.9)
+    .attr("stroke", "#000")
+    .attr("stroke-width", 3)
+    .attr("d",  d3.line()
+    .curve(d3.curveBasis)
+    .x(function(d) { return x(d[0]); })
+    .y(function(d) { return y(d[1]); })
+    )
+    
+})
+
+
+</script>
+
 </html>

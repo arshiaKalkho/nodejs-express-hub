@@ -1,0 +1,197 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+
+html {
+  --color-primary: #c62368;
+  --color-secondary: #001220;
+  --color-tertioary: #fa7268;
+  --color-grey: #302f2f;
+  background-color: var(--color-secondary);
+  font-family: "Roboto", sans-serif;
+}
+body {
+  padding: 0px;
+  margin: 0px;
+}
+/* navbar */
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2vw;
+  position: absolute;
+  top: 0;
+  height: 5vh;
+  width: 100vw;
+  font-family: "Roboto", sans-serif;
+}
+.nav-links {
+  text-decoration: none;
+  color: var(--color-primary);
+  padding: 5px;
+  border-radius: 10px;
+}
+.nav-links:hover {
+  color: var(--color-tertioary);
+  border: 2px solid var(--color-tertioary);
+}
+.welcome-user {
+  color: var(--color-tertioary);
+}
+.logout-button {
+  color: var(--color-primary);
+  background-color: var(--color-tertioary);
+  border: none;
+  height: 1.5rem;
+  width: 4rem;
+  border-radius: 10px;
+  font-family: Anton, sans-serif;
+}
+.logout-button:hover {
+  border: 1px solid var(--color-primary);
+}
+.nav-left {
+  display: flex;
+  flex-direction: row;
+  margin: 0 10vw;
+  align-items: center;
+  justify-content: flex-end;
+  height: 3vh;
+  gap: 5vw;
+}
+.nav-right {
+  width: 40vw;
+  display: flex;
+  flex-direction: row;
+  margin-left: 10vw;
+  align-items: center;
+  justify-content: flex-end;
+  height: 3vh;
+  gap: 5vw;
+}
+
+/* navbar completed */
+/* body started */
+.about {
+  color: var(--color-primary);
+  text-align: center;
+  margin: 10vh 0;
+
+  padding: 2vw;
+  font-family: Roboto, sans-serif;
+}
+.separator {
+  width: 100vw;
+  height: 20vh;
+  background-image: url("./images/separator.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.svg > g > g > g .tick {
+  fill: var(--color-primary);
+}
+
+#my_dataviz > svg > g > g:nth-child(3) > g > text,
+#my_dataviz > svg > g > g.xAxis > g > text {
+  fill: var(--color-primary);
+  font-size: 1rem;
+}
+#my_dataviz > svg > g > g.xAxis > g > line {
+  stroke: var(--color-tertioary);
+}
+#my_dataviz > svg > g > text {
+  fill: var(--color-primary);
+  font-family: "Roboto", sans-serif;
+}
+
+.commit-history-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 0;
+  align-items: center;
+  margin: 5vh 0;
+}
+
+.commit-history {
+  margin-top: 5vh;
+}
+.commit-history-info {
+  margin-top: 5vh;
+
+  text-align: center;
+  padding: 1rem;
+  color: var(--color-primary);
+}
+.commit-history-info > h2,
+.about-header {
+  font-family: "Anton", serif;
+  color: var(--color-tertioary);
+}
+.commit-history-info > p > strong,
+.about > p > strong {
+  color: var(--color-tertioary);
+}
+.commit-history-info > p > a,
+.about > p > a {
+  font-family: "Anton", serif;
+  color: var(--color-tertioary);
+}
+.footer {
+  width: 100vw;
+  height: 20vh;
+  background-image: url("./images/footer-background.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin: 10vh 0px 0px 0px;
+
+  overflow-x: hidden;
+  font-family: "Roboto", sans-serif;
+  color: var(--color-primary);
+  bottom: 0;
+
+  text-align: center;
+}
+.footer > a {
+  color: var(--color-tertioary);
+  font-family: "Anton", sans-serif;
+}
+
+/* small displays */
+@media only screen and (max-width: 500px) {
+  body > div.navbar > div.nav-left > a {
+    font-size: 1.2rem;
+  }
+  .navbar > div {
+    margin: 0;
+  }
+  .commit-history-info {
+    margin-top: 5vh;
+  }
+  .separator {
+    height: 10vh;
+  }
+}
+/* large screens */
+@media only screen and (max-width: 1000px) {
+  .commit-history-flex {
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .commit-history {
+    margin: 2vh;
+    margin-right: 4vh;
+  }
+  .commit-history-info {
+    margin: 2vh;
+  }
+  .separator {
+    height: 25vh;
+  }
+}
+/* xl screens */
+@media only screen and (max-width: 1600px) {
+}

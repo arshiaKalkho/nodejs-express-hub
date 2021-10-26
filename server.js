@@ -1,7 +1,6 @@
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
-}
-
+}//adding environment variables
 const express = require('express');
 const app = express();
 const bcrypt = require('bcrypt')
@@ -10,7 +9,17 @@ const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
 const initializePassport = require('./passport-config')
+const dbConnectionString = process.env.DATA_BASE_CONNECTION_STRING;
+const dataServices = require('./data-services')
  let users = [];
+
+
+
+
+ const DBconnection = dataServices(dbConnectionString);
+
+dataServices.initialize().then()
+
 
 
 initializePassport(

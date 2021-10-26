@@ -7,8 +7,10 @@ let userSchema = new mongoose.Schema({
     Date: Date,
     userName: String,
     password: String,
-    email:String
+    email:{type: String,
+      unique: true}
 });
+
 
 
 module.exports = function(connectionString){
@@ -35,12 +37,7 @@ module.exports = function(connectionString){
           return new Promise((resolve,reject)=>{
 
               let newUser = new user(data);
-              if(this.doesUserExistByUserName){//if already exists reject with massage
-                reject(`User Name alredy exists`)
-              }  
-              if(this.doesUserExistByEmail){//if already exists reject with massage
-                reject(`Email alredy im use`)
-              }  
+              
                 newUser.save((err) => {
                   if(err) {
                       reject(err);
@@ -48,7 +45,7 @@ module.exports = function(connectionString){
                       resolve(`new user: ${newUser.email} successfully added`);
                   }
               });
-            
+              
               
             
           });
@@ -75,37 +72,7 @@ module.exports = function(connectionString){
           });
       },
 
-      doesUserExistByEmail: function(Cemail){
-        return new Promise((resolve,reject)=>{
-          user.findOne({email : Cemail})
-          .then(user=>{
-            console.log(user)
-            if(user != null){
-            resolve(true)
-          }else{
-            resolve(false);
-          }
-          }).catch((err)=>{
-            reject(err);
-          })
-          
-        })
-      },
-      doesUserExistByUserName: function(username){
-        return new Promise((resolve,reject)=>{
-          user.findOne({userName : username})
-          .then(user=>{
-            if(user != null){
-            resolve(true)
-          }else{
-            resolve(false);
-          }
-          }).catch((err)=>{
-            reject(err);
-          })
-          
-        })
-      }
+      
 
   }
 

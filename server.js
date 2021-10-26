@@ -15,18 +15,11 @@ const dataServices = require('./data-services')
 
 const DBconnection = dataServices(dbConnectionString);//cpnnection ready to go 
 
-
-
- 
-
-
-
 initializePassport(
     passport,
     DBconnection.getUserByEmail,
     DBconnection.getUserById
 )
-
 
 app.use('./viws/images/favicon.ico', express.static('./viws/images/favicon.ico'));
 app.set('view-engine', 'ejs')
@@ -43,10 +36,8 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
 
-
-
 app.get('/', checkAuthenticated, (req, res) => {
-    res.render('index.ejs', { name: req.user.name })
+    res.render('index.ejs', { name: req.user.userName })
 })
 
 app.get('/login', checkNotAuthenticated, (req, res) => {
@@ -67,14 +58,15 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 
 app.post('/register', checkNotAuthenticated, async (req, res) => {
     try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 1)
+        const hashedPassword = await bcrypt.hash(req.body.password, 10)
         
         DBconnection.RegisterUser({
         id: Date.now().toString(),
         name: req.body.name,
         email: req.body.email,
         password: hashedPassword
-        }).then().catch((err)=>{console.log(err)})
+        }).then().catch(
+            (err)=>{console.log(err)})
         
         
         
@@ -107,7 +99,7 @@ function checkNotAuthenticated(req, res, next) {
 }
 
 
-DBconnection.initialize().then(()=>{
+DBconnection.initialize().then(()=>{//we only start the database works
     app.listen(process.env.PORT||3000,()=>{
         console.log(`on port ${process.env.PORT||3000} we have liftoff" `)
     })    

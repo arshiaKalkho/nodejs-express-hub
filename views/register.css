@@ -14,6 +14,7 @@ html {
   background-image: url("./images/register-background.svg");
   background-repeat: no-repeat;
   background-size: cover;
+  overflow-x: hidden;
 }
 .heading {
   font-family: "Anton", sans-serif;

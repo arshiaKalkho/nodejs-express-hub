@@ -102,6 +102,9 @@ if(viewPortWidth > 1400){//large devices
     hsizeMultiplier = 1.4;
     vsizeMultiplier = 2; 
 }
+if(viewPortHeight < 400){
+    marginTop=30;
+}
 
 // set the dimensions and margins of the graph
 var margin = {top:marginTop, right: marginRight, bottom: 30, left:150},

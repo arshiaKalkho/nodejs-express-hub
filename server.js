@@ -13,19 +13,18 @@ const dbConnectionString = process.env.DATA_BASE_CONNECTION_STRING;
 const dataServices = require('./data-services')
  let users = [];
 
+const DBconnection = dataServices(dbConnectionString);//cpnnection ready to go 
 
 
 
- const DBconnection = dataServices(dbConnectionString);
-
-dataServices.initialize().then()
+ 
 
 
 
 initializePassport(
     passport,
-    email => users.find(user => user.email === email),
-    id => users.find(user => user.id === id)
+    DBconnection.getUserByEmail,
+    DBconnection.getUserById
 )
 
 
@@ -69,14 +68,15 @@ app.get('/register', checkNotAuthenticated, (req, res) => {
 app.post('/register', checkNotAuthenticated, async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 1)
-        users.push({
+        
+        DBconnection.RegisterUser({
         id: Date.now().toString(),
         name: req.body.name,
         email: req.body.email,
         password: hashedPassword
-
-
-    })
+        }).then().catch((err)=>{console.log(err)})
+        
+        
         
         res.redirect('/login')
     } catch {
@@ -106,4 +106,11 @@ function checkNotAuthenticated(req, res, next) {
     next()
 }
 
-app.listen(process.env.PORT||3000)
+
+DBconnection.initialize().then(()=>{
+    app.listen(process.env.PORT||3000,()=>{
+        console.log(`on port ${process.env.PORT||3000} we have liftoff" `)
+    })    
+}).catch((err)=>
+{console.log(err)});
+

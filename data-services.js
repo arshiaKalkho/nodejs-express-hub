@@ -35,7 +35,7 @@ module.exports = function(connectionString){
           return new Promise((resolve,reject)=>{
 
               let newUser = new user(data);
-              if(newUser.exists({email:data.email })||newUser.exists({userName: data.userSame })){//if already exists reject with massage
+              //if(newUser.exists({email:data.email })||newUser.exists({userName: data.userSame })){//if already exists reject with massage
                 
                 newUser.save((err) => {
                   if(err) {
@@ -44,9 +44,9 @@ module.exports = function(connectionString){
                       resolve(`new user: ${newUser.email} successfully added`);
                   }
               });
-            }else{
+            
               reject(`User Name alredy exists`)
-            }
+            
           });
       },
 

@@ -20,7 +20,7 @@ initializePassport(
 )
 
 
-
+app.use('./viws/images/favicon.ico', express.static('./viws/images/favicon.ico'));
 app.set('view-engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static(__dirname));

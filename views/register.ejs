@@ -14,7 +14,13 @@
     </div>
     <div class="main-div">
     <form class="input login-form" action="/register" method="post">
-        <p>If you don't want to make an account, just use default to register and then login with default values provided.</p>
+        <p>If you don't want to make an account, Just go back to the login page and login with default values.</p>
+        
+        <div class="error">
+            <% if (err) { %>
+                <%=err %>
+            <% } %>
+        </div>
         <div>
             <h5>Name</h5>
             <input type="text" value="root" id="name" name="name" required>

@@ -11,7 +11,7 @@ const methodOverride = require('method-override')
 const initializePassport = require('./passport-config')
 const dbConnectionString = process.env.DATA_BASE_CONNECTION_STRING;
 const dataServices = require('./data-services')
- let users = [];
+
 
 const DBconnection = dataServices(dbConnectionString);//cpnnection ready to go 
 
@@ -53,29 +53,39 @@ app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
 ))
 
 app.get('/register', checkNotAuthenticated, (req, res) => {
-    res.render('register.ejs')
+    res.render('register.ejs',{ err: ""})
 })
 
 app.post('/register', checkNotAuthenticated, async (req, res) => {
-    try {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10)
-        
-        DBconnection.RegisterUser({
-        id: Date.now().toString(),
-        name: req.body.name,
-        email: req.body.email,
-        password: hashedPassword
-        }).then().catch(
-            (err)=>{console.log(err)})
-        
-        
-        
-        res.redirect('/login')
-    } catch {
-        res.redirect('/register')
-    }
+    
+    
+        const userAlreadyExists = await DBconnection.getUserByEmail(req.body.email);
+        if(userAlreadyExists === null){
 
-})
+            
+        
+
+                const hashedPassword = await bcrypt.hash(req.body.password, 10)
+                
+                DBconnection.RegisterUser({
+                id: Date.now().toString(),
+                name: req.body.name,
+                email: req.body.email,
+                password: hashedPassword
+                }).then().catch(
+                    (err)=>{console.log(err)})
+                
+                
+                
+                res.redirect('/login')
+            
+        }else{
+            
+            res.render('register.ejs', { err: "email already in use"})
+        }
+    } 
+
+)
 
 app.delete('/logout', (req, res) => {
     req.logOut()
@@ -99,10 +109,12 @@ function checkNotAuthenticated(req, res, next) {
 }
 
 
-DBconnection.initialize().then(()=>{//we only start the database works
+//we only start the if database works
+
+DBconnection.initialize().then(()=>{
     app.listen(process.env.PORT||3000,()=>{
         console.log(`on port ${process.env.PORT||3000} we have liftoff" `)
     })    
 }).catch((err)=>
-{console.log(err)});
+{console.log("database is out of service",err)});
 

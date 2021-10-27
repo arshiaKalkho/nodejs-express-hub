@@ -93,9 +93,14 @@ input {
   border: 2px solid var(--color-primary);
 }
 p {
+  text-align: center;
   width: 60vw;
   font-family: "Roboto", sans-serif;
   color: var(--color-tertioary);
+}
+.error {
+  color: red;
+  font-size: 1.5rem;
 }
 a {
   margin-top: 1vh;

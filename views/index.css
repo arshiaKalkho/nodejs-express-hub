@@ -178,6 +178,11 @@ body {
   body > div.navbar > div.nav-left > a {
     font-size: 1.2rem;
   }
+  .welcome-user {
+    width: 0px;
+    height: 0px;
+    visibility: hidden;
+  }
   .navbar > div {
     margin: 0;
   }
@@ -207,5 +212,8 @@ body {
   }
 }
 /* xl screens */
-@media only screen and (max-width: 1600px) {
+@media only screen and (min-width: 1400px) {
+  html {
+    font-size: 1.2rem;
+  }
 }

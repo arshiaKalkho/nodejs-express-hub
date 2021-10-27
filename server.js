@@ -13,7 +13,7 @@ const dbConnectionString = process.env.DATA_BASE_CONNECTION_STRING;
 const dataServices = require('./data-services')
 
 
-const DBconnection = dataServices(dbConnectionString);//cpnnection ready to go 
+const DBconnection = dataServices(dbConnectionString);//connection ready to go 
 
 initializePassport(
     passport,
@@ -21,7 +21,7 @@ initializePassport(
     DBconnection.getUserById
 )
 
-app.use('./viws/images/favicon.ico', express.static('./viws/images/favicon.ico'));
+app.use('./views/images/favicon.ico', express.static('./veiws/images/favicon.ico'));
 app.set('view-engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 app.use(express.static(__dirname));

@@ -86,17 +86,24 @@ body {
 /* navbar completed */
 
 .placeholder-content {
-  font-size: 5rem;
+  font-size: 4rem;
   text-align: center;
-  font-family: "Anton", sans-serif;
+  font-family: "Roboto", sans-serif;
+  margin: 20px;
   margin-top: 30vh;
   color: var(--color-primary);
 }
+.placeholder-content > strong {
+  color: var(--color-tertioary);
+}
 @media only screen and (max-width: 500px) {
   .placeholder-content {
-    font-size: 3rem;
+    font-size: 1.5rem;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
     margin: 20px;
     margin-top: 30vh;
+    color: var(--color-primary);
   }
   body > div.navbar > div.nav-left > a {
     font-size: 1.2rem;

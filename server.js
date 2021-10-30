@@ -96,6 +96,13 @@ app.delete('/logout', (req, res) => {
 
 })
 
+app.get('*', function(req, res){
+    res.render('not-found.ejs')
+  });
+
+
+
+
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next()

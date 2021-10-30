@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="./views/not-found.css">
     <link rel="shortcut icon" type="image/jpg" href="./views/images/favicon.ico"/>
-    <link rel="stylesheet" href="./views/projects.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects</title>
 </head>
@@ -12,13 +12,13 @@
     <div class = "navbar">
         <div class="nav-left">
             <a class="nav-links" href="/">Back</a>
+            <a class="nav-links" href="/projects">Projects</a>
             <a class="nav-links" href="https://github.com/arshiaKalkho/">GitHub</a>
-            <a class="nav-links" href="https://www.linkedin.com/in/arshia-kalkhorani/">Linkdin</a>
+            
             
             
         </div>
         <div class="nav-right">
-            <h5 class="welcome-user">Welcome <%= name %></h5>
             <form action="/logout?_method=DELETE" method="POST">
                 <button class="logout-button"type="submit">Log Out</button>
             </form>
@@ -28,7 +28,7 @@
 
 
     <div class="placeholder-content">
-        Coming Soon!!!
+        <strong>404 not found,</strong> <br>This page your trying to access doesn't exist, <br> But i like your sense of adventure.
     </div>
 
 

@@ -11,8 +11,7 @@ const methodOverride = require('method-override')
 const initializePassport = require('./passport-config')
 const dbConnectionString = process.env.DATA_BASE_CONNECTION_STRING;
 const dataServices = require('./data-services')
-
-
+let currentUser="";
 const DBconnection = dataServices(dbConnectionString);//connection ready to go 
 
 initializePassport(
@@ -36,23 +35,27 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(methodOverride('_method'))
 
-app.get('/', checkAuthenticated, (req, res) => {
-    res.render('index.ejs', { name: req.user.userName })
+app.get('/', checkAuthenticated, (req, res) => {    
+    res.render('index.ejs', { name: currentUser })
 })
 app.get('/projects', checkAuthenticated, (req, res) => {
-    res.render('projects.ejs', { name: req.user.userName })
+    res.render('projects.ejs', { name: currentUser })
 })
 
 app.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('login.ejs')
 })
 
-app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
+app.post('/login', checkNotAuthenticated, (req, res) =>{
+    console.log(res);
+    
+}, passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true
+}
+  
 
-} 
 ))
 
 app.get('/register', checkNotAuthenticated, (req, res) => {

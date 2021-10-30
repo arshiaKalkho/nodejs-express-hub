@@ -39,6 +39,9 @@ app.use(methodOverride('_method'))
 app.get('/', checkAuthenticated, (req, res) => {
     res.render('index.ejs', { name: req.user.userName })
 })
+app.get('/projects', checkAuthenticated, (req, res) => {
+    res.render('projects.ejs', { name: req.user.userName })
+})
 
 app.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('login.ejs')

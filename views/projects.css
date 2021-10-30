@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+
+html {
+  --color-primary: #c62368;
+  --color-secondary: #001220;
+  --color-tertioary: #fa7268;
+  --color-grey: #302f2f;
+  background-color: var(--color-secondary);
+  font-family: "Roboto", sans-serif;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0.5em;
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 1);
+  box-shadow: inset 0 0 3px #fa7268;
+  border-radius: 100vw;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 100vw;
+}
+body {
+  padding: 0px;
+  margin: 0px;
+}
+/* navbar */
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2vw;
+  position: absolute;
+  top: 0;
+  height: 5vh;
+  width: 100vw;
+  font-family: "Roboto", sans-serif;
+}
+.nav-links {
+  text-decoration: none;
+  color: var(--color-primary);
+  padding: 5px;
+  border-radius: 10px;
+}
+.nav-links:hover {
+  color: var(--color-tertioary);
+  border: 2px solid var(--color-tertioary);
+}
+.welcome-user {
+  color: var(--color-tertioary);
+}
+.logout-button {
+  color: var(--color-primary);
+  background-color: var(--color-tertioary);
+  border: none;
+  height: 1.5rem;
+  width: 4rem;
+  border-radius: 10px;
+  font-family: Anton, sans-serif;
+}
+.logout-button:hover {
+  border: 1px solid var(--color-primary);
+}
+.nav-left {
+  display: flex;
+  flex-direction: row;
+  margin: 0 10vw;
+  align-items: center;
+  justify-content: flex-end;
+  height: 3vh;
+  gap: 5vw;
+}
+.nav-right {
+  width: 40vw;
+  display: flex;
+  flex-direction: row;
+  margin-left: 10vw;
+  align-items: center;
+  justify-content: flex-end;
+  height: 3vh;
+  gap: 5vw;
+}
+
+/* navbar completed */

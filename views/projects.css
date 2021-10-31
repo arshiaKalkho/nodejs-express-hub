@@ -110,7 +110,7 @@ body {
 }
 .banner-img {
   position: absolute;
-  background-image: url("./images/card-back.PNG");
+  background-image: url("./views/images/card-back.PNG");
   height: 10rem;
   width: 100%;
   background-position: center;

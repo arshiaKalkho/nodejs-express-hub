@@ -46,10 +46,7 @@ app.get('/login', checkNotAuthenticated, (req, res) => {
     res.render('login.ejs')
 })
 
-app.post('/login', checkNotAuthenticated, (req, res) =>{
-    console.log(res);
-    
-}, passport.authenticate('local', {
+app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true

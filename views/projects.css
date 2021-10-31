@@ -85,13 +85,94 @@ body {
 
 /* navbar completed */
 
-.placeholder-content {
-  font-size: 5rem;
-  text-align: center;
-  font-family: "Anton", sans-serif;
-  margin-top: 30vh;
-  color: var(--color-primary);
+.main-grid{
+  margin-top: 20vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 20rem);
+  justify-content: center;
+  gap: 2rem;
 }
+
+.card {
+  overflow: hidden;
+  box-shadow: 0px 2px 8px 0px var(--color-primary);
+  background-color: var(--color-grey);
+  text-align: center;
+  border-radius: 10px;
+  position: relative;
+  border: solid var(--color-tertioary) 2px
+}
+.card:hover{
+  transform: scale(1.05);
+  transition: all 200ms ease-out;
+}
+.banner-img {
+  position: absolute;
+  background-image: url("images/card-back.PNG");
+  height: 10rem;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.profile-img {
+  width: 8rem;
+  clip-path: circle(60px at center);
+  margin-top: 4.5rem;
+}
+
+.name {
+ font-family: "Anton" , sans-serif;
+ color:white;
+ 
+}
+
+.description {
+  color: white;
+  min-height: 10vh;
+  max-height: 10vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+}
+
+.btn {
+  display: block;
+  width: 90%;
+  border: none;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  padding: 1rem;
+  background-color: var(--color-tertioary);
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+}
+
+.btn-code {
+  display: block;
+  width: 90%;
+  border: none;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  padding: 1rem;
+  background-color: var(--color-primary);
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+}
+.btn:hover{
+  opacity: calc(0.5);
+  transition: all 200ms ease-in-out;
+}
+.disabled{
+  opacity: calc(0.2);
+}
+
+
+
 @media only screen and (max-width: 500px) {
   .placeholder-content {
     font-size: 3rem;

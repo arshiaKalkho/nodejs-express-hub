@@ -47,6 +47,7 @@ body {
 .nav-links:hover {
   color: var(--color-tertioary);
   border: 2px solid var(--color-tertioary);
+  transition: all 200ms ease-in-out;
 }
 .welcome-user {
   color: var(--color-tertioary);
@@ -86,7 +87,7 @@ body {
 /* navbar completed */
 
 .main-grid{
-  margin-top: 20vh;
+  margin: 20vh 2vh;
   display: grid;
   grid-template-columns: repeat(auto-fit, 20rem);
   justify-content: center;
@@ -95,7 +96,7 @@ body {
 
 .card {
   overflow: hidden;
-  box-shadow: 0px 2px 8px 0px var(--color-primary);
+  box-shadow: 2px 8px 10px 2px var(--color-primary);
   background-color: var(--color-grey);
   text-align: center;
   border-radius: 10px;
@@ -105,6 +106,7 @@ body {
 .card:hover{
   transform: scale(1.05);
   transition: all 200ms ease-out;
+  box-shadow: 2px 10px 10px 2px var(--color-tertioary);
 }
 .banner-img {
   position: absolute;
@@ -117,8 +119,12 @@ body {
 }
 .profile-img {
   width: 8rem;
-  clip-path: circle(60px at center);
+  clip-path: circle(70px at center);
   margin-top: 4.5rem;
+  transition: transform .7s ease-in-out;
+}
+.profile-img:hover{
+  transform: rotate(360deg);
 }
 
 .name {
@@ -129,6 +135,7 @@ body {
 
 .description {
   color: white;
+  padding: 2px;
   min-height: 10vh;
   max-height: 10vh;
   overflow-y: scroll;
@@ -167,7 +174,12 @@ body {
   opacity: calc(0.5);
   transition: all 200ms ease-in-out;
 }
+
+
 .disabled{
+  opacity: calc(0.2);
+}
+.disabled:hover{
   opacity: calc(0.2);
 }
 

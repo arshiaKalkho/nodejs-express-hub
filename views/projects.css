@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
 html {
@@ -89,6 +89,24 @@ body {
 
 /* navbar completed */
 
+.header-info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10vh 5vw;
+  font-family: "Anton", sans-serif;
+  letter-spacing: 1px;
+  color: var(--color-primary);
+}
+.project-desc{
+  font-family: "Roboto", serif;
+  text-align: center;
+  width: 60vw;
+}
+
+
+
 .main-grid{
   margin: 20vh 2vh;
   display: grid;
@@ -133,6 +151,7 @@ body {
 .name {
  font-family: "Anton" , sans-serif;
  color:white;
+ letter-spacing: 1px;
  
 }
 

@@ -37,6 +37,7 @@ body {
   height: 5vh;
   width: 100vw;
   font-family: "Roboto", sans-serif;
+  background-color: var(--color-grey);
 }
 .nav-links {
   text-decoration: none;

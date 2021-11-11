@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
 html {
@@ -28,6 +28,7 @@ body {
 }
 /* navbar */
 .navbar {
+  
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -37,16 +38,18 @@ body {
   height: 5vh;
   width: 100vw;
   font-family: "Roboto", sans-serif;
+  background-color: var(--color-grey);
 }
 .nav-links {
+  font-family:"Anton", sans-serif;
+  letter-spacing: 1px;
   text-decoration: none;
   color: var(--color-primary);
   padding: 5px;
   border-radius: 10px;
 }
 .nav-links:hover {
-  color: var(--color-tertioary);
-  border: 2px solid var(--color-tertioary);
+  background-color: var(--color-tertioary);
   transition: all 200ms ease-in-out;
 }
 .welcome-user {
@@ -86,7 +89,25 @@ body {
 
 /* navbar completed */
 
-.main-grid {
+.header-info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10vh 5vw;
+  font-family: "Anton", sans-serif;
+  letter-spacing: 1px;
+  color: var(--color-primary);
+}
+.project-desc{
+  font-family: "Roboto", serif;
+  text-align: center;
+  width: 60vw;
+}
+
+
+
+.main-grid{
   margin: 20vh 2vh;
   display: grid;
   grid-template-columns: repeat(auto-fit, 20rem);
@@ -128,8 +149,10 @@ body {
 }
 
 .name {
-  font-family: "Anton", sans-serif;
-  color: white;
+  font-family: "Anton" , sans-serif;
+  color:white;
+  letter-spacing: 1px;
+  
 }
 
 .description {

@@ -40,7 +40,7 @@ body {
   background-color: var(--color-grey);
 }
 .nav-links {
-  font-family:"Anton", sans-serif;
+  font-family: "Anton", sans-serif;
   letter-spacing: 1px;
   text-decoration: none;
   color: var(--color-primary);
@@ -93,7 +93,7 @@ body {
   text-align: center;
   margin: 10vh 0;
 
-  padding: 5vh  10vw ;
+  padding: 5vh 10vw;
   font-family: Roboto, sans-serif;
 }
 

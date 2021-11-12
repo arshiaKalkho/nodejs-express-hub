@@ -28,7 +28,6 @@ body {
 }
 /* navbar */
 .navbar {
-  
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -41,7 +40,7 @@ body {
   background-color: var(--color-grey);
 }
 .nav-links {
-  font-family:"Anton", sans-serif;
+  font-family: "Anton", sans-serif;
   letter-spacing: 1px;
   text-decoration: none;
   color: var(--color-primary);
@@ -87,9 +86,19 @@ body {
   gap: 5vw;
 }
 
+/* dark-mode */
+.dark-mode-toggle {
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+}
+
 /* navbar completed */
 
-.header-info{
+.header-info {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,15 +108,13 @@ body {
   letter-spacing: 1px;
   color: var(--color-primary);
 }
-.project-desc{
+.project-desc {
   font-family: "Roboto", serif;
   text-align: center;
   width: 60vw;
 }
 
-
-
-.main-grid{
+.main-grid {
   margin: 20vh 2vh;
   display: grid;
   grid-template-columns: repeat(auto-fit, 20rem);
@@ -117,12 +124,12 @@ body {
 
 .card {
   overflow: hidden;
-  box-shadow: 2px 8px 10px 2px var(--color-primary);
+  box-shadow: 2px 8px 10px 2px var(--color-grey);
   background-color: var(--color-grey);
   text-align: center;
   border-radius: 10px;
   position: relative;
-  border: solid var(--color-tertioary) 2px;
+  /* border: solid var(--color-tertioary) 2px; */
 }
 .card:hover {
   transform: scale(1.05);
@@ -131,7 +138,7 @@ body {
 }
 .banner-img {
   position: absolute;
-  background-image: url("./views/images/card-back.PNG");
+  background-image: url("./images/card-back.png");
   height: 10rem;
   width: 100%;
   background-position: center;
@@ -149,10 +156,9 @@ body {
 }
 
 .name {
-  font-family: "Anton" , sans-serif;
-  color:white;
+  font-family: "Anton", sans-serif;
+  color: white;
   letter-spacing: 1px;
-  
 }
 
 .description {

@@ -86,6 +86,16 @@ body {
   gap: 5vw;
 }
 
+/* dark-mode */
+.dark-mode-toggle {
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+}
+
 /* navbar completed */
 /* body started */
 .about {
@@ -179,7 +189,7 @@ body {
 /* small displays */
 @media only screen and (max-width: 500px) {
   body > div.navbar > div.nav-left > a {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   .welcome-user {
     width: 0px;
@@ -194,6 +204,9 @@ body {
   }
   .separator {
     height: 10vh;
+  }
+  .nav-left + .nav-right {
+    margin-left: -25px;
   }
 }
 /* large screens */

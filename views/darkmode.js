@@ -11,7 +11,7 @@ let footer =  document.querySelector(".footer");
 const enableDarkMode = () =>{
     document.body.classList.add("darkmode");
     vars.style.setProperty('--color-primary', "#000ffc" )
-    vars.style.setProperty('--color-secondary', "001220" )
+    vars.style.setProperty('--color-secondary', "#ffffff" )
     vars.style.setProperty('--color-tertioary', "#1cd1d1" )
     
     separator.style.backgroundImage = "url('./views/images/separator-light-mode.svg')"

@@ -5,14 +5,14 @@ let separator = document.querySelector(".separator");
 let footer =  document.querySelector(".footer");
 
 
-
+//same code used for project page with modifications
 
 
 const enableDarkMode = () =>{
     document.body.classList.add("darkmode");
     vars.style.setProperty('--color-primary', "#000ffc" )
     vars.style.setProperty('--color-secondary', "001220" )
-    vars.style.setProperty('--color-tertioary', "#00ddfc" )
+    vars.style.setProperty('--color-tertioary', "#1cd1d1" )
     
     separator.style.backgroundImage = "url('./views/images/separator-light-mode.svg')"
     

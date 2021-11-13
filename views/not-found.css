@@ -5,7 +5,7 @@ html {
   --color-primary: #c62368;
   --color-secondary: #001220;
   --color-tertioary: #fa7268;
-  --color-grey: #302f2f;
+  --color-grey: #494949;
   background-color: var(--color-secondary);
   font-family: "Roboto", sans-serif;
   overflow-x: hidden;

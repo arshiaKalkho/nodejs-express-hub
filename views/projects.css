@@ -95,6 +95,10 @@ body {
   height: 26px;
   cursor: pointer;
 }
+#dark-mode-toggle:active> svg{
+  transform:  scale(1.5) rotate(180deg);
+  transition: 100ms ease-in-out;
+}
 
 /* navbar completed */
 

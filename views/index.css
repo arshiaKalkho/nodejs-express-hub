@@ -44,8 +44,30 @@ body {
   letter-spacing: 1px;
   text-decoration: none;
   color: var(--color-primary);
-  padding: 5px;
+  padding: 2px;
   border-radius: 10px;
+}
+@keyframes backAnimation {
+  0% {
+    background-position: 30vw;
+  }
+
+  100% {
+    background-position: 100vw;
+  }
+}
+.projects-link {
+  color: aqua;
+  background-image: linear-gradient(
+    to right,
+    var(--color-primary),
+    var(--color-tertioary)
+  );
+  animation-duration: 10s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: backAnimation;
+  animation-timing-function: linear;
 }
 .nav-links:hover {
   background-color: var(--color-tertioary);
@@ -95,12 +117,10 @@ body {
   height: 26px;
   cursor: pointer;
 }
-#dark-mode-toggle:active> svg{
-  transform:  scale(1.5) rotate(180deg);
+#dark-mode-toggle:active > svg {
+  transform: scale(1.5) rotate(180deg);
   transition: 100ms ease-in-out;
 }
-
-
 
 /* navbar completed */
 /* body started */
@@ -193,9 +213,22 @@ body {
 }
 
 /* small displays */
+
+@media only screen and (max-height: 500px) {
+  .navbar {
+    height: 10vh;
+  }
+  .nav-right {
+    padding-right: 1vw;
+  }
+}
+
 @media only screen and (max-width: 500px) {
   body > div.navbar > div.nav-left > a {
     font-size: 1rem;
+  }
+  .navbar {
+    justify-content: space-between;
   }
   .welcome-user {
     width: 0px;
@@ -205,6 +238,7 @@ body {
   .navbar > div {
     margin: 0;
   }
+
   .commit-history-info {
     margin-top: 5vh;
   }
@@ -213,6 +247,9 @@ body {
   }
   .nav-left + .nav-right {
     margin-left: -25px;
+  }
+  .nav-right {
+    padding-right: 1vw;
   }
 }
 /* large screens */

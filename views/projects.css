@@ -95,8 +95,8 @@ body {
   height: 26px;
   cursor: pointer;
 }
-#dark-mode-toggle:active> svg{
-  transform:  scale(1.5) rotate(180deg);
+#dark-mode-toggle:active > svg {
+  transform: scale(1.5) rotate(180deg);
   transition: 100ms ease-in-out;
 }
 
@@ -148,6 +148,23 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  transition: 100ms ease-in-out;
+}
+.movoid-img {
+  background-image: url("./images/movioid-img.PNG");
+}
+.portfolio-img {
+  background-image: url("./images/portfolio-back.PNG");
+}
+.projects-img {
+  background-image: url("./images/projects-back.jpg");
+}
+.spotify-img {
+  background-image: url("./images/spotify-back.PNG");
+}
+.banner-img:hover {
+  transform: scale(1.2);
+  transition: 100ms ease-in-out;
 }
 .profile-img {
   width: 8rem;

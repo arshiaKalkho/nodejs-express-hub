@@ -51,12 +51,15 @@ app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
     failureRedirect: '/login',
     failureFlash: true
 }
-  
+
 
 ))
 
 app.get('/register', checkNotAuthenticated, (req, res) => {
     res.render('register.ejs',{ err: ""})
+})
+app.get('/algorithm-visualizer', (req, res) => {
+    res.render('algs.ejs')
 })
 
 app.post('/register', checkNotAuthenticated, async (req, res) => {

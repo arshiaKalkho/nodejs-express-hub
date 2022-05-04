@@ -153,6 +153,9 @@ body {
 .movoid-img {
   background-image: url("./images/movioid-img.PNG");
 }
+.alg-img {
+  background-image: url("./images/alg-background.png");
+}
 .portfolio-img {
   background-image: url("./images/portfolio-back.PNG");
 }
